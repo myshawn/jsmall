@@ -28,16 +28,20 @@ Route.get('/send', () => {
   }
 )
 
-Route.get('/get_wechat_id/:code', async ({ params }) => {
-    var request = require('request');
-    const ret = request(`https://api.weixin.qq.com/sns/jscode2session?appid=${app_id}&secret=${secret_key}&js_code=${params.code}&grant_type=authorization_code`,
-      function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-          console.log(body);
-          return body;
-        }
-      })
-    return ret;
+const request = require('request');
+const apireq = url => new Promise((resolve, reject) => request.get(url, (err, response, body) => {
+  if (err) {
+    reject({code: 'ERROR'});
+  } else {
+    resolve({code: 'OK', data: body});
   }
-)
+}));
+
+Route.get('/mini/get_wechat_id/:code', async ({ params }) => {
+    return await apireq(`https://api.weixin.qq.com/sns/jscode2session?appid=${app_id}&secret=${secret_key}&js_code=${params.code}&grant_type=authorization_code`);
+})
+
+Route.get('/get', async () => {
+  return await apireq("https://www.baidu.com");
+})
 

@@ -27,7 +27,8 @@
     "@adonisjs/session": "^1.0.27",
     "@adonisjs/shield": "^1.0.8",
     "@alicloud/pop-core": "^1.7.7",
-    "@alicloud/sms-sdk": "^1.1.6"
+    "@alicloud/sms-sdk": "^1.1.6",
+    "request": "^2.88.0"
   },
   "devDependencies": {},
   "autoload": {
