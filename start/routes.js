@@ -45,3 +45,7 @@ Route.get('/get', async () => {
   return await apireq("https://www.baidu.com");
 })
 
+Route.post('/mini/get_id', async ({ params }) => {
+  console.log(params.encryptedData);
+//  return await apireq(`https://api.weixin.qq.com/sns/jscode2session?appid=${app_id}&secret=${secret_key}&js_code=${params.code}&grant_type=authorization_code`);
+})
